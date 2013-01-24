@@ -11,15 +11,14 @@
 </style>
 <body>
 
-<input type="button" id="btn" value="按钮" />
+<div class="class1 class2 class3">sadadad</div>
 
 <script type="text/javascript">
-	$(window).on('resize',function () {
-		console.log(1);
-	});
-	$('#btn').click(function () {
-		$('body').height(3000);
-	})
+window.onload = function () {
+	var div = document.getElementsByTagName('div')[0];
+	alert(div.textContent);
+}
+	
 </script>
 </body>
 </html>

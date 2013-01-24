@@ -1,4 +1,5 @@
 work
 ====
 
-我的工作内容
+@weibo.com/pannysp
+工作之余写点小代码，娱乐娱乐

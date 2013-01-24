@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>scrollBarX</title>
+</head>
+<script type="text/javascript" src="jquery.js"></script>
+<body>
+<style type="text/css">
+body{padding: 100px 0 0 200px; margin: 0; }
+.scrollx{ width: 300px; height: 20px; margin-right: 50px; background-color: #f8f8f8; border: 1px solid #eee; position: relative; float: left;}
+.scrollx .roll{width: 20px; height: 26px; position: absolute; top: -3px; left: 0px; background-color: #3bf; box-shadow: 1px 1px 1px rgba(100, 100, 100, 0.3); }
+.scrollx .rbg{width: 0px; height: 20px; line-height: 20px; background-color: #d3f0fe; color: #333; text-align: center; font-family: Arial; font-size: 12px; }
+</style>
+<script type="text/javascript">
+(function($) {
+	$.fn.scrollBarX = function() {
+		var $doc= $(document),
+		roll = [],
+		rollbg = [];
+		return this.each(function(i) {
+			var box = this,
+			$box = $(box),
+			$roll = null,
+			disX = 0,
+			maxl = 0,
+			boxWidth = box.offsetWidth,
+			rollWidth = 0;
+			roll[i] = document.createElement('i');
+			rollbg[i] = document.createElement('div');
+			roll[i].className = "roll";
+			rollbg[i].className = "rbg";
+			box.appendChild(roll[i]);
+			box.appendChild(rollbg[i]);
+
+			rollWidth = roll[i].offsetWidth;
+			maxl = boxWidth-rollWidth;
+			$roll = $(roll[i]);
+			$roll.on("mousedown",function(e) {
+				disX = e.clientX - roll[i].offsetLeft;
+				
+				$doc.on("mousemove",function(ev) {
+					var l = ev.clientX - disX;
+					if(l<0){
+						l = 0;
+					}else if (l>maxl) {
+					    l = maxl;	
+					}
+					roll[i].style.left = l+"px";
+					rollbg[i].style.width = l+"px";
+					rollbg[i].innerHTML = (l===0) ? '' : Math.floor(l*100/maxl)+"%";
+					return false;
+				});
+
+				$doc.on("mouseup",function() {
+					$doc.off("mousemove mouseup");
+				});
+				return false;
+			});
+
+		});
+	}
+})(jQuery);
+
+	$(function() {
+		$(".scrollx").scrollBarX();
+	})
+</script>
+
+<div class="scrollx"></div>
+<div class="scrollx"></div>
+<div class="scrollx"></div>
+</body>
+</html>

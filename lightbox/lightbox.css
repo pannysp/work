@@ -1,0 +1,134 @@
+#lightboxOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  background-color: #000;
+  display: none;
+}
+
+#lightbox {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 10000;
+  text-align: center;
+  overflow: hidden; 
+  display: none;
+}
+
+.lb-outerContainer {
+  position: relative;
+  background-color: #fff;
+  *zoom: 1;
+  width: 50px;
+  height:50px;
+  margin: 0 auto;
+  border-radius: 4px;
+  line-height: 0;
+  font-size: 0;
+}
+
+.lb-outerContainer:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.lb-container {
+  padding: 10px;
+}
+
+.lb-loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 50px;
+  width: 50px;
+  margin:-25px 0 0 -25px;
+  text-align: center;
+  line-height: 0;
+  background:url(images/loading.gif) center center no-repeat;
+}
+
+.lb-error{font-size: 12px; color: #f00; margin-top: 35%;}
+
+.lb-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+  display: none;
+}
+
+.lb-prev, .lb-next {
+  width: 49%;
+  height: 100%;
+  background: #f00;
+  display: block;
+  outline: none;
+  cursor: default; 
+}
+
+.lb-prev {
+  float: left;
+  background: url(images/prev.png) -9999px 48% no-repeat;
+}
+
+.lb-next {
+  float: right;
+  background:url(images/next.png) -9999px 48% no-repeat;
+}
+
+.lb-prev:hover {
+  background-position: 0 48%;
+}
+
+.lb-next:hover {
+  background-position: right 48%;
+}
+
+.lb-dataContainer {
+  margin: 0 auto;
+  padding-top: 5px;
+  *zoom: 1;
+  width: 100%;
+  display: none;
+}
+.lb-dataContainer:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.lb-data {
+  padding: 0 10px;
+  color: #bbb;
+}
+.lb-data .lb-details {
+  width: 85%;
+  float: left;
+  text-align: left;
+  line-height: 1.1em;
+}
+.lb-data .lb-caption {
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 1em;
+}
+.lb-data .lb-number {
+  display: block;
+  clear: left;
+  padding-bottom: 1em;
+  font-size: 11px;
+}
+.lb-data .lb-close{
+  width: 30px;
+  height: 30px;
+  float: right;
+  display: block; cursor: pointer; outline: none;
+  background: url(images/close.png) no-repeat 0 0;
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>选中文本</title>
+</head>
+<script type="text/javascript" src="jquery.js"></script>
+<body>
+<style type="text/css">
+*{margin: 0; padding: 0;}
+body{padding: 100px 300px; margin: 0; }
+#box{ width: 600px; overflow: hidden; }
+</style>
+<script type="text/javascript">
+window.onload = function () {
+	function getSelectText() {
+		if (document.selection) {
+			return document.selection.createRange().text;
+		}else{
+			return window.getSelection().toString();
+		}
+	}
+
+	var $box = $("#box");
+
+	$box.data('zftext',1).on('mouseup',function (e) {
+		var txt = getSelectText().replace(/\s/g,''),
+		left = e.clientX,
+		top = e.clientY,
+		zftext = $box.data('zftext');
+		
+		if(zftext == 0){ //icon已显示，则移除并重置data
+			$('#zfweibo_icon').remove();
+			$box.data('zftext',1);
+		}
+
+		if (txt.length>10) {
+			setTimeout(function(){
+				var img = new Image();
+				img.src = 'http://static.bshare.cn/frame/images/logos/m2/sinaminiblog.gif';
+				img.id = 'zfweibo_icon';
+				img.style.position = 'absolute';
+				img.style.left = left + 'px';
+				img.style.top = top + 'px';
+				document.body.appendChild(img);
+				img.onclick = function () {
+					window.open('http://service.weibo.com/share/share.php?appkey=&title='+txt+'&url='+'http://weibo.com/pannysp');
+				};
+				$box.data('zftext',0);
+			}, 100);
+		}
+	}).on('click',function () {
+		return false;//阻止冒泡给document
+	});
+
+	document.onclick = function () {
+		if($box.data('zftext') == 0){
+			$('#zfweibo_icon').remove();
+			$box.data('zftext',1);
+		}
+	}
+
+}
+</script>
+<div id='box'>
+	selection并非W3C标准，只是目前有些主流的浏览器提供的API；<br>
+document.selection只有IE支持，
+window.getSelection()也只有FireFox和Safari支持
+selection 对象代表了当前激活选中区，即高亮文本块，或文档中用户可执行某些操作的其它元素。selection 对象的典型用途是作为用户的输入，以便识别正在对文档的哪一部分正在处理，或者作为某一操作的结果输出给用户。<br><br>
+1.要对选中区执行操作，请先用createRange方法从选中区创建一个文本区域对象。document.selection.createRange() 根据当前文字选择返回 TextRange 对象，或根据控件选择返回 ControlRange 对象。
+<br><br>
+2.清除选中的内容：document.selection.clear();  
+<br><br>
+3.查看选择的内容：document.selection.createRange().text;
+<br><br>
+4.可以对某个对象创建一个文本区域对象 再选中该区域<br><br>
+    var t=document.getElementById("oid");     <br>
+    var o=t.createTextRange(); <br>
+    o.collapse(false);  //表示光标的位置  在前或在后<br>
+    o.select();<br>
+</div>
+
+</body>
+</html>

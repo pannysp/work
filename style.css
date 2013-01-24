@@ -1,0 +1,6 @@
+.main{margin:50px auto; width:1006px; overflow: hidden; }
+.main h2{padding: 5px; text-align:center; background-color: #e4e4e4; border: 1px solid #ccc;}
+.main li{float: left; width: 200px; border: 1px solid #ccc; background-color: #f4f4f4; margin: -1px -1px 0 0; line-height: 35px; color: #396; display: none;}
+.main li span{display: inline-block; width: 100px; padding: 0 15px; text-align: right; margin-right: 10px; background-color: #eee;}
+.main li.false{color: #f00;}
+.main li.false span,.main li.true span{color: #000;}

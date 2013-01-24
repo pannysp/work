@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>评价星星</title>
+</head>
+<script type="text/javascript" src="../jquery.js"></script>
+<style type="text/css">
+body{padding: 100px 200px; margin: 0; }
+.ping_item{ float: left; width: 240px; height:20px; margin-right: 50px; font-size: 0px;}
+.ping_item img{margin-right: 5px;}
+.ping_item span, .ping_item em{font-size: 12px; position: relative; top:-4px;}
+.ping_item em{color: #f60;font-style: normal;}
+</style>
+<body>
+
+<div class='ping_item' id="total_ping"></div>
+
+<div class='ping_item' id="cost_ping"></div>
+
+
+<div class='ping_item' id="package_ping"></div>
+
+
+<script type="text/javascript" src="pingstars.js"></script>
+<script type="text/javascript">
+$(function () {
+	$('#total_ping').pingStars({
+		title:'总评分'
+	});
+	
+	$('#cost_ping').pingStars({
+		title:'性价比',
+		tipText:['非常低','低','一般','高','非常高']
+	});
+
+	$('#package_ping').pingStars({
+		title:'包装质量',
+		tipText:['很烂','差','一般','好','非常好']
+	});
+});
+</script>
+</body>
+</html>

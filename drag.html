@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>drag</title>
+</head>
+<script type="text/javascript" src="jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="global.css" />
+<style type="text/css">
+
+</style>
+<body>
+
+<div name="image" id="dropbox" style="min-width:300px;min-height:100px;border:3px dashed silver;"></div> 
+
+<div id="preview"></div>
+
+<script type="text/javascript">
+var dropbox = document.getElementById('dropbox');
+var preview = document.getElementById('preview');
+document.addEventListener("dragenter", function(e){  
+    dropbox.style.borderColor = 'gray';  
+}, false);  
+document.addEventListener("dragleave", function(e){  
+    dropbox.style.borderColor = 'silver';  
+}, false);  
+dropbox.addEventListener("dragenter", function(e){  
+    dropbox.style.borderColor = 'gray';  
+    dropbox.style.backgroundColor = 'white';  
+}, false);  
+dropbox.addEventListener("dragleave", function(e){  
+    dropbox.style.backgroundColor = 'transparent';  
+}, false);  
+dropbox.addEventListener("dragenter", function(e){  
+    e.stopPropagation();  
+    e.preventDefault();  
+}, false);  
+dropbox.addEventListener("dragover", function(e){  
+    e.stopPropagation();  
+    e.preventDefault();  
+}, false);  
+dropbox.addEventListener("drop", function(e){  
+    e.stopPropagation();  
+    e.preventDefault();  
+      
+    handleFiles(e.dataTransfer.files);  
+}, false); 
+
+var handleFiles = function(files) {  
+    for (var i = 0; i < files.length; i++) {  
+        var file = files[i];  
+  		showpic(file);
+    }  
+} 
+
+function showpic(file) {
+   
+var img = document.createElement("img");  
+img.classList.add("obj");  
+img.file = file;  
+preview.appendChild(img);  
+console.log(img.classList);
+var reader = new FileReader();  
+reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);  
+reader.readAsDataURL(file);  
+}
+
+</script>
+</body>
+</html>

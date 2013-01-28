@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>scrollBarX</title>
+</head>
+<script type="text/javascript" src="jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="global.css" />
+<body>
+
+
+<script type="text/javascript">
+	function man(name) {
+		this.name = name;
+	}
+
+	man.prototype.callname = function () {
+		console.log(this.name);
+	}
+
+	function worker(name, job) {
+		this.job = job;
+		man.call(this,name);
+	}
+
+	worker.prototype = new man();
+	worker.prototype.constructor = worker;
+	worker.prototype.calljob = function () {
+		console.log(this.job);
+	}
+
+	var dd = new worker("daa","web");
+	dd.callname();
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>检测浏览器是否支持CSS3的属性</title>
+	<link rel="stylesheet" type="text/css" href="../global.css" />
+	<script type="text/javascript" src="../jquery.js"></script>
+	<script type="text/javascript" src="css3.js"></script>
+</head>
+<body>
+
+<style type="text/css">
+.main{margin:50px auto; width:1006px; overflow: hidden; }
+.main h2{padding: 5px; text-align:center; background-color: #e4e4e4; border: 1px solid #ccc;}
+.main li{float: left; width: 200px; border: 1px solid #ccc; background-color: #f4f4f4; margin: -1px -1px 0 0; line-height: 35px; color: #396; display: none;}
+.main li span{display: inline-block; width: 100px; padding: 0 15px; text-align: right; margin-right: 10px; background-color: #eee;}
+.main li.false{color: #f00;}
+.main li.false span,.main li.true span{color: #000;}
+</style>
+
+<div class="main">
+<h2>当前浏览器支持html5、CSS3的情况</h2>
+<ul id="css3_list" class="cle_f"></ul>
+</div>
+
+
+<script type="text/javascript">
+$(function(){
+	var list = "", arry = [];
+	$.each(Modernizr, function(k,v){
+		if(v===true || v===false){
+			arry.push(k+'-'+v);
+		}
+	});
+	arry.sort();
+	$.each(arry, function(i){
+		var n = arry[i].split('-');
+		list = '<li class="'+n[1]+'"><span>'+n[0]+'</span>'+n[1]+'</li>';
+		$(list).appendTo("#css3_list").delay(i*250).fadeIn();
+	});
+	
+});
+</script>
+</body>
+</html>

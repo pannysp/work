@@ -2,21 +2,32 @@
 <html>
 <head>
 <meta charset="utf-8"/>
-<title>drag</title>
+<title>蛇年大吉</title>
 </head>
-<script type="text/javascript" src="jquery.js"></script>
-<link rel="stylesheet" type="text/css" href="global.css" />
+<script></script>
 <style type="text/css">
-
+	div{height: 20px;margin-bottom: 10px; background-color: #f00; }
 </style>
 <body>
 
-<div name="image" id="dropbox" style="display:block; height:100%;">d</div> 
 
-<div id="preview"></div>
 
+<div id="div">
+	<button>点我</button>
+	<span>dasdasdas</span>
+</div>
 <script type="text/javascript">
-alert( window.screen.height);
+var name = "the window";
+var obj = {
+	name : "hello",
+	getname : function () {
+		return function () {
+			return this.name;
+		}
+	}
+};
+
+console.log(obj.getname()());
 </script>
 </body>
 </html>
